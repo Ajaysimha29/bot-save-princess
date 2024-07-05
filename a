@@ -1,0 +1,47 @@
+def displayPathtoPrincess(N, grid):
+    # Find Mario ('m') and Princess ('p') positions
+    m_pos = None
+    p_pos = None
+    
+    for i in range(N):
+        for j in range(N):
+            if grid[i][j] == 'm':
+                m_pos = (i, j)
+            elif grid[i][j] == 'p':
+                p_pos = (i, j)
+    
+    # Unpack positions
+    m_row, m_col = m_pos
+    p_row, p_col = p_pos
+    
+    # Calculate moves
+    moves = []
+    
+    # Calculate row and column differences
+    row_diff = p_row - m_row
+    col_diff = p_col - m_col
+    
+    # Append the moves based on the calculated differences
+    if row_diff > 0:
+        moves.extend(['DOWN'] * row_diff)
+    elif row_diff < 0:
+        moves.extend(['UP'] * (-row_diff))
+    
+    if col_diff > 0:
+        moves.extend(['RIGHT'] * col_diff)
+    elif col_diff < 0:
+        moves.extend(['LEFT'] * (-col_diff))
+    
+    # Print out moves, each on a new line
+    for move in moves:
+        print(move)
+
+# Example usage:
+N = 3
+grid = [
+    ['-', '-', '-'],
+    ['-', 'm', '-'],
+    ['p', '-', '-']
+]
+
+displayPathtoPrincess(N, grid)
